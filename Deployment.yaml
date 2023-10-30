@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bot-for-all
-  namespace: bots
+  namespace: bots # Don't forget to create this Namespace
   labels:
     app: bot-for-all
 spec:
