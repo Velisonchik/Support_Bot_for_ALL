@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot-for-all
+  namespace: bots
+  labels:
+    app: bot-for-all
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bot-for-all
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: bot-for-all
+      labels:
+        app: bot-for-all
+    spec:
+      containers:
+        - name: bot-for-all
+          image: DOCKER_REGISTRY/bot_for_all:version # Don't forget to set DOCKER_REGISTRY address
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: registrypullsecret # Don't forget to create imagePullSecrets for your DOCKER_REGISTRY
+      restartPolicy: Always
+
+
