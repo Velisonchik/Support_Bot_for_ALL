@@ -46,6 +46,9 @@ def create_new_issue(subject: str, description: str, username: int, tracker_id_i
     except redminelib.exceptions.ServerError as err:
         print(err)
         return "internal error", False
+    except Exception as err:
+        print(err)
+        return err.__str__(), False
 
 
 def check_user_role(mas):

@@ -90,13 +90,11 @@ async def choosing_user(message: Message, state: FSMContext):
         username=users_from_project[users_dict[message.from_user.id]['user']],
         author_issue=allow_ids[str(message.from_user.id)])
     if users_dict[message.from_user.id]['uri_issue'][1]:
-        text = f"Спасибо. Вот ссылка на твою задачу:\n"
-        f"{users_dict[message.from_user.id]['uri_issue'][0]}"
+        text = f"Спасибо. Вот ссылка на твою задачу:\n{users_dict[message.from_user.id]['uri_issue'][0]}"
     elif "internal" in users_dict[message.from_user.id]['uri_issue'][0]:
         text = f"Внутреняя ошибка сервера.\nПопробуй еще раз."
     else:
-        text = f"Ошибка:\n"
-        f"{users_dict[message.from_user.id]['uri_issue'][0]}"
+        text = f"Ошибка:\n{users_dict[message.from_user.id]['uri_issue'][0]}\nОбратитесь к админам."
     await message.answer(
         text=text,
         reply_markup=ReplyKeyboardRemove()
